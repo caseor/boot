@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.caseor.boot.datasource.mapper.User1Mapper">
+
+  <insert id="insert" keyProperty="" useGeneratedKeys="true">
+    INSERT INTO TEST_USER1(`ID`, `NAME`, `AGE`, `SEX`, `BIRTHDAY`)
+    VALUES (#{id}, #{name}, #{age}, #{sex}, #{birthday})
+  </insert>
+
+  <delete id="deleteById">
+    DELETE
+    FROM TEST_USER1
+    WHERE `ID` = #{id}
+  </delete>
+
+  <update id="updateById">
+    UPDATE TEST_USER1
+    <set>
+      <if test="id != null">
+        `ID` = #{id},
+      </if>
+      <if test="name != null and name != ''">
+        `NAME` = #{name},
+      </if>
+      <if test="age != null">
+        `AGE` = #{age},
+      </if>
+      <if test="sex != null">
+        `SEX` = #{sex},
+      </if>
+      <if test="birthday != null">
+        `BIRTHDAY` = #{birthday},
+      </if>
+    </set>
+    WHERE `ID` = #{id}
+  </update>
+
+  <select id="select" resultType="org.caseor.boot.datasource.entity.User1">
+    SELECT ID, NAME, AGE, SEX, BIRTHDAY
+    FROM TEST_USER1
+    <where>
+      <if test="params.id != null">
+        AND ID = #{params.id}
+      </if>
+      <if test="params.name != null and params.name != ''">
+        <bind name="name" value="'%'+ params.name +'%'"/>
+        AND NAME LIKE #{name}
+      </if>
+      <if test="params.age != null">
+        AND AGE = #{params.age}
+      </if>
+      <if test="params.sex != null">
+        AND SEX = #{params.sex}
+      </if>
+      <if test="params.birthday != null">
+        AND BIRTHDAY = #{params.birthday}
+      </if>
+      <if
+        test="params.createTimeBegin != null and params.createTimeBegin != '' and params.createTimeEnd != null and params.createTimeEnd != null">
+        AND create_time BETWEEN #{params.createTimeBegin} AND #{params.createTimeEnd}
+      </if>
+      <if
+        test="params.updateTimeBegin != null and params.updateTimeBegin != '' and params.updateTimeEnd != null and params.updateTimeEnd != ''">
+        AND update_time BETWEEN #{params.updateTimeBegin} AND #{params.updateTimeEnd}
+      </if>
+    </where>
+    <if test="params.idAsc != null and params.idDesc == true">
+      ORDER BY id DESC
+    </if>
+  </select>
+</mapper>
+

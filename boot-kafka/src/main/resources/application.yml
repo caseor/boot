@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /kafka
+
+
+spring:
+  profiles:
+    active: dev

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: boot-hello-world
+knife4j:
+  enable: true
+  setting:
+    enableDynamicParameter: true

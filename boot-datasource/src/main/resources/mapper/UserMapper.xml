@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.caseor.boot.datasource.mapper.UserMapper">
+
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO test_user(`id`, `username`, `password`, `name`, `sex`, `age`, `birthday`, `create_time`, `create_by`,
+                          `update_time`, `update_by`)
+    VALUES (#{id}, #{username}, #{password}, #{name}, #{sex}, #{age}, #{birthday}, #{createTime}, #{createBy},
+            #{updateTime}, #{updateBy})
+  </insert>
+
+  <delete id="deleteById">
+    DELETE
+    FROM test_user
+    WHERE `id` = #{id}
+  </delete>
+
+  <update id="updateById">
+    UPDATE test_user
+    <set>
+      <if test="username != null and username != ''">
+        `username` = #{username},
+      </if>
+      <if test="password != null and password != ''">
+        `password` = #{password},
+      </if>
+      <if test="name != null and name != ''">
+        `name` = #{name},
+      </if>
+      <if test="sex != null">
+        `sex` = #{sex},
+      </if>
+      <if test="age != null">
+        `age` = #{age},
+      </if>
+      <if test="birthday != null">
+        `birthday` = #{birthday},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime},
+      </if>
+      <if test="createBy != null and createBy != ''">
+        `create_by` = #{createBy},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime},
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        `update_by` = #{updateBy},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+
+  <select id="select" resultType="org.caseor.boot.datasource.entity.User">
+    SELECT `id`, `username`, `password`, `name`, `sex`, `age`, `birthday`, `create_time`, `create_by`, `update_time`,
+    `update_by`
+    FROM test_user
+    <where>
+      <if test="params.id != null">
+        AND `id` = #{params.id}
+      </if>
+      <if test="params.username != null and params.username != ''">
+        <bind name="username" value="'%'+ params.username +'%'"/>
+        AND `username` LIKE #{username}
+      </if>
+      <if test="params.password != null and params.password != ''">
+        <bind name="password" value="'%'+ params.password +'%'"/>
+        AND `password` LIKE #{password}
+      </if>
+      <if test="params.name != null and params.name != ''">
+        <bind name="name" value="'%'+ params.name +'%'"/>
+        AND `name` LIKE #{name}
+      </if>
+      <if test="params.sex != null">
+        AND `sex` = #{params.sex}
+      </if>
+      <if test="params.age != null">
+        AND `age` = #{params.age}
+      </if>
+      <if test="params.birthday != null">
+        AND `birthday` = #{params.birthday}
+      </if>
+      <if test="params.createTime != null">
+        AND `create_time` = #{params.createTime}
+      </if>
+      <if test="params.createBy != null and params.createBy != ''">
+        <bind name="createBy" value="'%'+ params.createBy +'%'"/>
+        AND `create_by` LIKE #{createBy}
+      </if>
+      <if test="params.updateTime != null">
+        AND `update_time` = #{params.updateTime}
+      </if>
+      <if test="params.updateBy != null and params.updateBy != ''">
+        <bind name="updateBy" value="'%'+ params.updateBy +'%'"/>
+        AND `update_by` LIKE #{updateBy}
+      </if>
+      <if
+        test="params.createTimeBegin != null and params.createTimeBegin != '' and params.createTimeEnd != null and params.createTimeEnd != null">
+        AND `create_time` BETWEEN #{params.createTimeBegin} AND #{params.createTimeEnd}
+      </if>
+      <if
+        test="params.updateTimeBegin != null and params.updateTimeBegin != '' and params.updateTimeEnd != null and params.updateTimeEnd != ''">
+        AND `update_time` BETWEEN #{params.updateTimeBegin} AND #{params.updateTimeEnd}
+      </if>
+    </where>
+    <if test="params.idAsc != null and params.idDesc == true">
+      ORDER BY `id` DESC
+    </if>
+  </select>
+</mapper>
+

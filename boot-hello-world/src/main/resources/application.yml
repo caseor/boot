@@ -1,0 +1,8 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /hello-world
+
+spring:
+  profiles:
+    active: dev
