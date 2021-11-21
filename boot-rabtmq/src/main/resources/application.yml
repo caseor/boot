@@ -4,5 +4,8 @@ server:
     context-path: /rabtmq
 
 spring:
+  application:
+    name: boot-rabtmq
   profiles:
     active: dev
+

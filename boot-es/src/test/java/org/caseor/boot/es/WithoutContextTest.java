@@ -1,7 +1,7 @@
 package org.caseor.boot.es;
 
 import org.caseor.boot.es.mapstruct.UserStructMapper;
-import org.caseor.common.entity.User;
+import org.caseor.common.core.entity.User;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

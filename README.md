@@ -10,6 +10,7 @@
 - knife4j2
 - mapstruct
 - IdUtil分布式主键
+- 上传文件大小限制
 
 
 ## boot-websocket

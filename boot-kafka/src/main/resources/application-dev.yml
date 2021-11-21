@@ -1,6 +1,6 @@
 spring:
-  application:
-    name: boot-kafka
+  main:
+    lazy-initialization: true
   kafka:
     bootstrap-servers: 127.0.0.1:9092,127.0.0.1:9092
     producer:

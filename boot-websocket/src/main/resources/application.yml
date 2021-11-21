@@ -4,5 +4,8 @@ server:
     context-path: /websocket
 
 spring:
+  application:
+    name: boot-websocket
   profiles:
     active: dev
+

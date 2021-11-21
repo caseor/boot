@@ -4,5 +4,8 @@ server:
     context-path: /hello-world
 
 spring:
+  application:
+    name: boot-hello-world
   profiles:
     active: dev
+

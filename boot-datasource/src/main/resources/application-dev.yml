@@ -1,4 +1,6 @@
 spring:
+  main:
+    lazy-initialization: true
   datasource:
     dynamic:
       primary: ds-main

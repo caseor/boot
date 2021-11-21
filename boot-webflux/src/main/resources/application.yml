@@ -4,5 +4,8 @@ server:
     context-path: /webflux
 
 spring:
+  application:
+    name: boot-webflux
   profiles:
     active: dev
+

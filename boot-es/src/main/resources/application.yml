@@ -4,5 +4,8 @@ server:
     context-path: /es
 
 spring:
+  application:
+    name: boot-es
   profiles:
     active: dev
+

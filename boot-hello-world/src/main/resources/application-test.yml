@@ -1,6 +1,10 @@
 spring:
-  application:
-    name: boot-hello-world
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 1024MB
+
 knife4j:
   enable: true
   setting:

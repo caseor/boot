@@ -1,14 +1,14 @@
 spring:
   datasource:
     dynamic:
-      primary: main
+      primary: ds-main
       datasource:
-        main:
+        ds-main:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://127.0.0.1:31506/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
           username: root
           password: 2168230078
-        second:
+        ds-second:
           driver-class-name: oracle.jdbc.driver.OracleDriver
           url: jdbc:oracle:thin:@10.60.20.70:1521:XE
           username: ciems
